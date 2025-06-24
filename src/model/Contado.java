@@ -9,4 +9,11 @@ public class Contado extends FormaPago {
         estadoPago = "Pagado en efectivo";
         return true;
     }
+
+    @Override
+    public String getDescripcion() {
+        return "Pago en Contado";
+    }
 }
+
+

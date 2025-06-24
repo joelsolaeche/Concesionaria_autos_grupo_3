@@ -1,0 +1,59 @@
+
+Clases a hacer
+
+Interfaz UsuarioFacade
+administrado facade
+compradorFacade
+VendedorFacade
+
+administrador
+comprador
+vendedor
+usuario
+
+EstadoPedido
+
+FormaPago
+Contado
+Transferencia
+TarjetaCredito
+
+Interfaz FormaPagoFactory
+ContadoFactory
+TransferenciaFactory
+TarjetaCreditoFactory
+
+Interfaz Area
+Entrega
+Logistica
+Embarque
+Cobranzas
+Ventas
+
+
+
+
+todo ok
+
+PedidoCompra ok chequear errores
+PublicadorPedidoCompra OK
+HistorialPedidoCompra OK
+GeneradorInformePedido ok
+
+ERRORES EN ESTAS 3 CLASES
+{
+PedidoCompraBuilderConcreto
+Interfaz PedidoCompraBuilder
+PedidoCompraDirector
+}
+
+
+Impuesto
+ImpuestoStrategy
+ImpuestoNacionalStrategy
+ImpuestoProvincialStrategy
+ImpuestoProvAdiStrategy
+}
+
+Vehiculo ok
+Enum TipoVehiculo ok

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 public interface PedidoCompraBuilder {
     PedidoCompraBuilder setNoPedido(int nro);
@@ -9,8 +10,8 @@ public interface PedidoCompraBuilder {
     PedidoCompraBuilder setVehiculo(Vehiculo vehiculo);
     PedidoCompraBuilder setCostoTotal(double costoTotal);
     PedidoCompraBuilder setFormaPago(FormaPago formaPago);
-    PedidoCompraBuilder setAreaResponsableActual(String area);
-    PedidoCompraBuilder setHistorialPedido(HistorialPedidoCompra historialPedidoCompra);
+    PedidoCompraBuilder setAreaResponsableActual(Area area);
+    PedidoCompraBuilder setHistorialPedido(List<HistorialPedidoCompra> historialPedidoCompra);
     PedidoCompraBuilder setEstadoPedido(EstadoPedido estadoPedido);
     PedidoCompraBuilder setPublicador(PublicadorPedidoCompra publicador);
     PedidoCompra buildPedidoCompra();

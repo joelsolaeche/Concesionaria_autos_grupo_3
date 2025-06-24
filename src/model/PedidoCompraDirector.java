@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PedidoCompraDirector {
     private PedidoCompraBuilder builder;
@@ -9,13 +11,31 @@ public class PedidoCompraDirector {
         this.builder = builder;
     }
 
-    public PedidoCompra construirPedido() {
+
+    public PedidoCompra construirPedido(
+            int nroPedido,
+            Date fecha,
+            double costoTotal,
+            Cliente cliente,
+            Vehiculo vehiculo,
+            FormaPago formaPago,
+            Area area,
+            EstadoPedido estadoPedido,
+            List<HistorialPedidoCompra> historialPedidoCompra,
+            PublicadorPedidoCompra publicadorPedidoCompra
+    ) {
         return builder
-                .setNoPedido(1)
+                .setNoPedido(nroPedido)
                 .setFecha(new Date())
-                .setCostoTotal(10000)
-                // Agrega los demás atributos necesarios aquí
+                .setCostoTotal(costoTotal)
+                .setCliente(new Cliente(1, "Juan", "Ejemplo", "12345678", "juan@mail.com", "1122334455", "Calle Falsa 123", 20304050607L,new Date()))
+                .setVehiculo(new Vehiculo("Fiesta", "Ford", "Azul", 1001, "2001", TipoVehiculo.AUTO))
+                .setFormaPago(new Contado())
+                .setAreaResponsableActual(new Ventas())
+                .setEstadoPedido(new EstadoPedido(1, new Ventas()))
+                .setHistorialPedido(new ArrayList<HistorialPedidoCompra>())
                 .buildPedidoCompra();
     }
+
 }
 

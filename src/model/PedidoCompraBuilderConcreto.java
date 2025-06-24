@@ -1,13 +1,18 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 public class PedidoCompraBuilderConcreto implements PedidoCompraBuilder {
-    private PedidoCompra pedido = new PedidoCompra();
+    private PedidoCompra pedido;
+
+    public PedidoCompraBuilderConcreto() {
+        this.pedido = new PedidoCompra(); // Instancia inicial vacía
+    }
 
     @Override
     public PedidoCompraBuilder setNoPedido(int nro) {
-        pedido.nro = nro;
+        pedido.setNroPedido(nro);
         return this;
     }
 
@@ -19,49 +24,48 @@ public class PedidoCompraBuilderConcreto implements PedidoCompraBuilder {
 
     @Override
     public PedidoCompraBuilder setCliente(Cliente cliente) {
-        pedido.cliente = cliente;
+        pedido.setCliente(cliente);
         return this;
     }
 
     @Override
     public PedidoCompraBuilder setVehiculo(Vehiculo vehiculo) {
-        pedido.vehiculo = vehiculo;
+        pedido.setVehiculo(vehiculo);
         return this;
     }
 
     @Override
     public PedidoCompraBuilder setCostoTotal(double costoTotal) {
-        pedido.costoTotal = costoTotal;
+        pedido.setCostoTotal(costoTotal);
         return this;
     }
 
     @Override
-    public PedidoCompraBuilder setFormaPago(FormaDePago formaPago) {
-        pedido.formaPago = formaPago;
+    public PedidoCompraBuilder setFormaPago(FormaPago formaPago) {
+        pedido.setFormaPago(formaPago);
         return this;
     }
 
     @Override
-    public PedidoCompraBuilder setAreaResponsableActual(String area) {
-        pedido.areaResponsableActual = area;
+    public PedidoCompraBuilder setAreaResponsableActual(Area area) {
+        pedido.setAreaResponsableActual(area);
         return this;
     }
-
-
-    public PedidoCompraBuilder setHistorialPedido(HistorialPedido historialPedido) {
-        pedido.historialPedido = historialPedido;
+    @Override
+    public PedidoCompraBuilder setHistorialPedido(List<HistorialPedidoCompra> historial) {
+        pedido.setHistorialPedidoCompra(historial);
         return this;
     }
 
     @Override
     public PedidoCompraBuilder setEstadoPedido(EstadoPedido estadoPedido) {
-        pedido.estadoPedido = estadoPedido;
+        pedido.setEstadoPedido(estadoPedido);
         return this;
     }
 
     @Override
     public PedidoCompraBuilder setPublicador(PublicadorPedidoCompra publicador) {
-        pedido.publicador = publicador;
+        //Inicializa el publicador con observadores registrados, si es necesario
         return this;
     }
 

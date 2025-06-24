@@ -16,4 +16,9 @@ public class TarjetaCredito extends FormaPago {
         estadoPago = "Pago con tarjeta aprobado";
         return true;
     }
+    @Override
+    public String getDescripcion() {
+        return "Pago con Tarjeta: " + tipoTarjeta + " en " + cuotas + " cuotas";
+    }
+
 }

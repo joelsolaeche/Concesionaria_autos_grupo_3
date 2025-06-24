@@ -16,4 +16,9 @@ public class Transferencia extends FormaPago {
         estadoPago = "Transferencia realizada";
         return true;
     }
+    @Override
+    public String getDescripcion() {
+        return "Pago por Transferencia Bancaria";
+    }
+
 }

@@ -14,36 +14,40 @@ public class GeneradorInformePedido {
         this.pedidos = pedidos;
     }
 
+    // Genera un informe con todos los pedidos creados exactamente en una fecha dada
     public List<PedidoCompra> generarPorFecha(Date fecha) {
         return pedidos.stream()
                 .filter(pedido -> pedido.getFecha().equals(fecha))
                 .collect(Collectors.toList());
     }
 
-    public List<PedidoCompra> generarPorEstado(String estado) {
+    // Genera un informe con todos los pedidos que coincidan con una descripción textual del estado
+    public List<PedidoCompra> generarPorEstado(String estadoTexto) {
         return pedidos.stream()
-                .filter(pedido -> pedido.getEstadoPedido().equals(estado))
+                .filter(pedido -> pedido.getEstadoPedido().getAreaResponsable().getNombreArea().equalsIgnoreCase(estadoTexto))
                 .collect(Collectors.toList());
     }
 
+
+    // Genera un informe con todos los pedidos realizados dentro de un rango de fechas
     public List<PedidoCompra> generarPorRango(Date fechaInicio, Date fechaFin) {
         return pedidos.stream()
                 .filter(pedido -> !pedido.getFecha().before(fechaInicio) && !pedido.getFecha().after(fechaFin))
                 .collect(Collectors.toList());
     }
 
-    public void exportarCSV(List<PedidoCompra> pedidos) {
-        // Example implementation for exporting to CSV
-        System.out.println("Exporting to CSV...");
-        for (PedidoCompra pedido : pedidos) {
+    // Exporta una lista de pedidos al formato CSV simulado
+    public void exportarCSV(List<PedidoCompra> pedidosFiltrados) {
+        System.out.println("Exportando informe a CSV:");
+        for (PedidoCompra pedido : pedidosFiltrados) {
             System.out.println(pedido.toCSV());
         }
     }
 
-    public void exportarPDF(List<PedidoCompra> pedidos) {
-        // Example implementation for exporting to PDF
-        System.out.println("Exporting to PDF...");
-        for (PedidoCompra pedido : pedidos) {
+    // Exporta una lista de pedidos al formato PDF simulado
+    public void exportarPDF(List<PedidoCompra> pedidosFiltrados) {
+        System.out.println("Exportando informe a PDF:");
+        for (PedidoCompra pedido : pedidosFiltrados) {
             System.out.println(pedido.toPDF());
         }
     }
