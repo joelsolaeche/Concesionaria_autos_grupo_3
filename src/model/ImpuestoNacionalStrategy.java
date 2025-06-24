@@ -1,8 +1,16 @@
 package model;
 
+
 public class ImpuestoNacionalStrategy implements ImpuestoStrategy {
     @Override
-    public double calcularImpuesto(double montoBase) {
-        return montoBase * 0.21; //  21% nacional
+    public double calcularImpuesto(Vehiculo vehiculo) {
+        switch (vehiculo.getTipoVehiculo()) {
+            case AUTO:
+                return vehiculo.getMonto() * 0.21;
+            case CAMIONETA:
+                return vehiculo.getMonto() * 0.10;
+            default:
+                return 0;
+        }
     }
 }

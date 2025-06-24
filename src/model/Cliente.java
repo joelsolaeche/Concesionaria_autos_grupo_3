@@ -26,6 +26,7 @@ public class Cliente {
         this.fechaAlta = fechaAlta;
     }
 
+
     // Metodo para validar que el cliente tenga datos completos
     public boolean esClienteValido() {
         return nombre != null && apellido != null && email != null && dni != null && !email.isBlank();

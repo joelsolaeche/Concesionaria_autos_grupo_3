@@ -8,6 +8,16 @@ public class Comprador extends Usuario {
     private String telefono;
     private List<PedidoCompra> historialCompras;
     private List<FormaPago> mediosDePago;
+    private Long cuit;  public Comprador(int id, String nombre, String apellido, String dni, String email, String contrasena, String direccion, String telefono, Long cuit) {
+        super(id, nombre, apellido, dni, email, contrasena);
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.cuit = cuit;
+        this.historialCompras = historialCompras;
+        this.mediosDePago = mediosDePago;
+    }
+
+
 
     public Comprador(int id, String nombre, String apellido, String dni, String email, String contraseña,
                      String direccion, String telefono) {
@@ -69,4 +79,6 @@ public class Comprador extends Usuario {
     public void setHistorialCompras(List<PedidoCompra> historialCompras) {this.historialCompras = historialCompras;}
     public List<FormaPago> getMediosDePago() {return mediosDePago;}
     public void setMediosDePago(List<FormaPago> mediosDePago) {this.mediosDePago = mediosDePago;}
+    public Long getCuit() {return cuit;}
+    public void setCuit(Long cuit) {this.cuit=cuit;}
 }

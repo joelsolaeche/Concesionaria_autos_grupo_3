@@ -8,15 +8,17 @@ public class Vehiculo {
     private String color;
     private int nroChasis;
     private String nroMotor;
+    private double monto;
     private TipoVehiculo tipoVehiculo;
 
 
-    public Vehiculo(String modelo, String marca, String color, int nroChasis, String nroMotor, TipoVehiculo tipoVehiculo) {
+    public Vehiculo(String modelo, String marca, String color, int nroChasis, String nroMotor,double monto, TipoVehiculo tipoVehiculo) {
         this.modelo = modelo;
         this.marca = marca;
         this.color = color;
         this.nroChasis = nroChasis;
         this.nroMotor = nroMotor;
+        this.monto = monto;
         this.tipoVehiculo = tipoVehiculo;
 
     }
@@ -70,6 +72,9 @@ public class Vehiculo {
     public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
         this.tipoVehiculo = tipoVehiculo;
     }
+
+    public double getMonto() {return monto;}
+    public void setMonto(double monto) {this.monto = monto;}
 
 
 }

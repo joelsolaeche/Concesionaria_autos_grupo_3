@@ -29,7 +29,7 @@ public class PedidoCompraDirector {
                 .setFecha(new Date())
                 .setCostoTotal(costoTotal)
                 .setCliente(new Cliente(1, "Juan", "Ejemplo", "12345678", "juan@mail.com", "1122334455", "Calle Falsa 123", 20304050607L,new Date()))
-                .setVehiculo(new Vehiculo("Fiesta", "Ford", "Azul", 1001, "2001", TipoVehiculo.AUTO))
+                .setVehiculo(new Vehiculo("Fiesta", "Ford", "Azul", 1001, "2001",3000, TipoVehiculo.AUTO))
                 .setFormaPago(new Contado())
                 .setAreaResponsableActual(new Ventas())
                 .setEstadoPedido(new EstadoPedido(1, new Ventas()))
