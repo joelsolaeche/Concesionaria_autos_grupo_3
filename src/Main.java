@@ -32,22 +32,7 @@ public class Main {
     ImpuestoStrategy nacional = new ImpuestoNacionalStrategy();
     ImpuestoStrategy provincialGral = new ImpuestoProvincialGenStrategy();
     ImpuestoStrategy ProvincialAdi = new ImpuestoProvAdiStrategy();
-
     Impuesto impuesto = new Impuesto(nacional);
-    System.out.println("Nacional: $" + impuesto.calcularImpuestoTotal(vehiculos.get(0)));
-    impuesto.setEstrategia(provincialGral);
-    System.out.println("Provincial general: $" + impuesto.calcularImpuestoTotal(vehiculos.get(0)));
-    impuesto.setEstrategia(ProvincialAdi);
-    System.out.println("Provinvial Adicional: $" + impuesto.calcularImpuestoTotal(vehiculos.get(0)));
-    System.out.println();
-
-    Impuesto impuesto2 = new Impuesto(nacional);
-    System.out.println("Nacional: $" + impuesto2.calcularImpuestoTotal(vehiculos.get(1)));
-    impuesto2.setEstrategia(provincialGral);
-    System.out.println("Provincial general: $" + impuesto2.calcularImpuestoTotal(vehiculos.get(1)));
-    impuesto2.setEstrategia(ProvincialAdi);
-    System.out.println("Provinvial Adicional: $" + impuesto2.calcularImpuestoTotal(vehiculos.get(1)));
-    System.out.println();
 
     List<PedidoCompra> pedidos = new ArrayList<>();
 
@@ -139,6 +124,20 @@ public class Main {
       }
       vehiculoElegido = vehiculos.get(opcionVehiculo - 1);
       System.out.println("Usted eligio: " + vehiculoElegido.getMarca() + " " + vehiculoElegido.getModelo());
+
+      double precioFinal = vehiculoElegido.getMonto();
+      System.out.println("Precio sin impuestos: $" + vehiculoElegido.getMonto());
+      impuesto.setEstrategia(nacional);
+      precioFinal += impuesto.calcularImpuestoTotal(vehiculoElegido);
+      System.out.println("Impuestos Nacionales $" + impuesto.calcularImpuestoTotal(vehiculoElegido));
+      impuesto.setEstrategia(provincialGral);
+      precioFinal += impuesto.calcularImpuestoTotal(vehiculoElegido);
+      System.out.println("Impuestos Provincial General $" + impuesto.calcularImpuestoTotal(vehiculoElegido));
+      impuesto.setEstrategia(ProvincialAdi);
+      precioFinal += impuesto.calcularImpuestoTotal(vehiculoElegido);
+      System.out.println("Impuesto Provinvial Adicional: $" + impuesto.calcularImpuestoTotal(vehiculoElegido));
+      System.out.println("Precio final del vehiculo: $" + precioFinal);
+      System.out.println();
 
       System.out.println("Seleccione la forma de pago:");
       System.out.println("1. Contado");
