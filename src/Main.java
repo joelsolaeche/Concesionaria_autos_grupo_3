@@ -61,10 +61,11 @@ public class Main {
     Vehiculo vehiculoElegido = null;
 
 
+
     //CREACION DE LOS FACADE
     if (usuarioLogueado instanceof Administrador) {
       AdministradorFacade adminFacade = new AdministradorFacade(admin, usuarios, vehiculos, pedidos);
-      System.out.println("Administrador accedio correctamente");
+      System.out.println("Administrador accedió correctamente");
 
       System.out.println("Lista de usuarios registrados: ");
       adminFacade.verTodosLosClientes();
@@ -72,10 +73,10 @@ public class Main {
       adminFacade.generarReportePedidos();
     } else if (usuarioLogueado instanceof Vendedor) {
       VendedorFacade vendedorFacade = new VendedorFacade(vendedor, vehiculos);
-      System.out.println("Vendedor accedio correctamente");
+      System.out.println("Vendedor accedió correctamente");
 
       List<Vehiculo> disponibles = vendedorFacade.obtenerVehiculosDisponibles();
-      System.out.println("Vehiculos Disponibles: ");
+      System.out.println("Vehículos Disponibles: ");
       for (Vehiculo vehiculo : disponibles) {
         System.out.println(" - " + vehiculo.getModelo() + " " + vehiculo.getColor());
       }
@@ -89,7 +90,7 @@ public class Main {
       }
     } else if (usuarioLogueado instanceof Comprador) {
       CompradorFacade compradorFacade = new CompradorFacade(comprador);
-      System.out.println("Comprador accedio correctamente");
+      System.out.println("Comprador accedió correctamente");
 
       Comprador compradorActual = (Comprador) usuarioLogueado;
       System.out.println("Bienvenido " + compradorActual.getNombre() + " " + compradorActual.getApellido());
@@ -102,7 +103,7 @@ public class Main {
         System.out.println((i + 1) + ". " + v.getMarca() + " " + v.getModelo() + " -color: " + v.getColor());
       }
 
-      System.out.println("Ingrese el numero del vehiculo que desea comprar: ");
+      System.out.println("Ingrese el número del vehículo que desea comprar: ");
       int opcionVehiculo = 0;
 
       boolean opcionValida = false;
@@ -113,15 +114,15 @@ public class Main {
           if (opcionVehiculo >= 1 && opcionVehiculo <= vehiculos.size()) {
             opcionValida = true;
           } else {
-            System.out.println("Opcion invalida, Ingrese un numero valido: ");
+            System.out.println("Opción inválida. Ingrese un número válido: ");
           }
         } else {
-          System.out.println("Ingrese un numero por favor: ");
+          System.out.println("Ingrese un número por favor: ");
           scannner.nextLine();
         }
       }
       vehiculoElegido = vehiculos.get(opcionVehiculo - 1);
-      System.out.println("Usted eligio: " + vehiculoElegido.getMarca() + " " + vehiculoElegido.getModelo());
+      System.out.println("Usted eligió: " + vehiculoElegido.getMarca() + " " + vehiculoElegido.getModelo());
 
       double precioFinal = vehiculoElegido.getMonto();
       System.out.println("Precio sin impuestos: $" + vehiculoElegido.getMonto());
@@ -134,7 +135,7 @@ public class Main {
       impuesto.setEstrategia(ProvincialAdi);
       precioFinal += impuesto.calcularImpuestoTotal(vehiculoElegido);
       System.out.println("Impuesto Provinvial Adicional: $" + impuesto.calcularImpuestoTotal(vehiculoElegido));
-      System.out.println("Precio final del vehiculo: $" + precioFinal);
+      System.out.println("Precio final del vehículo: $" + precioFinal);
       System.out.println();
 
       System.out.println("Seleccione la forma de pago:");
@@ -159,10 +160,10 @@ public class Main {
             formaPago = new TarjetaCredito();
             pagoValido = true;
           } else {
-            System.out.println("Opcion invalida, Ingrese 1,2,3:  ");
+            System.out.println("Opcion inváida. Ingrese 1,2,3:  ");
           }
         } else {
-          System.out.println("Ingrese un numero valido: ");
+          System.out.println("Ingrese un número valido: ");
           scannner.nextLine();
         }
 
@@ -193,6 +194,11 @@ public class Main {
 
     if (vehiculoElegido != null && usuarioLogueado instanceof Comprador) {
       Comprador compradorActual = (Comprador) usuarioLogueado;
+
+      if (clienteYaExiste(usuarios, compradorActual.getId(), compradorActual.getDni())) {
+        System.out.println("Error: Ya existe un cliente registrado con ese ID y DNI.");
+        return;
+      }
 
       Cliente clienteParaPedido = new Cliente(
               compradorActual.getId(),
@@ -261,4 +267,17 @@ public class Main {
       publicadorPedidoCompra.notificarObservadores();
     }
   }
+
+  public static boolean clienteYaExiste(List<Usuario> usuarios, int id, String dni) {
+    for (Usuario u : usuarios) {
+      if (u instanceof Comprador) {
+        Comprador c = (Comprador) u;
+        if (c.getId() == id && c.getDni().equals(dni)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }
+
