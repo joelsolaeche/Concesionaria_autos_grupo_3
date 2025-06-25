@@ -20,16 +20,6 @@ public class AdministradorFacade implements UsuarioFacade {
         admin.gestionarUsuarios(usuarios);
     }
 
-   public void cambairColorVehiculo(List<Vehiculo> vehiculos, int nroChasis, String nuevoColor){
-        for (Vehiculo v : vehiculos) {
-            if( v.getNroChasis() == nroChasis) {
-                v.setColor(nuevoColor);
-                System.out.println("Color del vehículo modificado correctamente. ");
-                return;
-            }
-        }
-       System.out.println("Vehiculo con chasis: " + nroChasis + "no encontrado. ");
-   }
 
     public void generarReportePedidos() {
         Reporte r = admin.verEstadisticas(pedidos);

@@ -69,8 +69,6 @@ public class Main {
       System.out.println("Lista de usuarios registrados: ");
       adminFacade.verTodosLosClientes();
 
-      adminFacade.cambairColorVehiculo(vehiculos, 1001, "Azul");
-
       adminFacade.generarReportePedidos();
     } else if (usuarioLogueado instanceof Vendedor) {
       VendedorFacade vendedorFacade = new VendedorFacade(vendedor, vehiculos);
